@@ -1,5 +1,8 @@
 # Environment variables
 env/
 
+# File where I experiment w/ stuff
+stuff.py
+
 # Other things
 .vscode/
