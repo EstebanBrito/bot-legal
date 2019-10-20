@@ -10,7 +10,7 @@ def print_lines(lines=15, chars=60, sep="-"):
 
 def process_section(text, i, save_obj=None):
   """Process the text section. For now, prints it in console
-  Future behavior will be storing the section string in a dict"""
+  Future behavior will be storing the section strings in a dict"""
   print(f"SECTION {i}:")
   print(text)
   print_lines()
@@ -36,10 +36,11 @@ def look_for_sections(text):
       while b < len_sections:
         # Confirm section B exists so we can extract that A-B section
         if f"\n\n{sections[b]}" in text:
-          # Build search pattern. Example: "\n\nHIPOTECARIO.*\n\nORDINARIO CIVIL"
+          # Build search pattern.
+          # Example: "\n\nHIPOTECARIO.*\n\nORDINARIO CIVIL"
           p = f"\n\n{sections[a]}.*\n\n{sections[b]}"
           # Look for pattern and process it
-          # TODO: PatternNotFound error handling
+          # TODO: Confirm the patter was actually found
           res = re.findall(p, text, re.S)
           process_section(res[0], s)
           # B is the next section to start looking
@@ -59,12 +60,6 @@ def look_for_sections(text):
     # Else, search for next possible section A
     else:
       a += 1
-
-
-def look_for_useful_metadata(metadata_str):
-  # Useful keys: Author, Creation-Date, dc:language, resourceName
-  keys = ['Author', 'Creation-Data', 'dc:language', 'resourceName']
-  pass
 
 
 
